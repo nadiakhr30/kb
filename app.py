@@ -338,12 +338,16 @@ def page_header(title, subtitle=""):
                 unsafe_allow_html=True)
 
 def metric_cards(items):
-    cards = "".join(f"""
-        <div class="metric-card">
-            <div class="mc-label">{lbl}</div>
-            <div class="mc-value">{val}</div>
-            {'<div class="mc-sub">' + sub + '</div>' if sub else ''}
-        </div>""" for lbl, val, sub in items)
+    cards = ""
+    for lbl, val, sub in items:
+        sub_html = f'<div class="mc-sub">{sub}</div>' if sub else ""
+        cards += (
+            '<div class="metric-card">'
+            f'<div class="mc-label">{lbl}</div>'
+            f'<div class="mc-value">{val}</div>'
+            f'{sub_html}'
+            '</div>'
+        )
     st.markdown(f'<div class="metric-row">{cards}</div>', unsafe_allow_html=True)
 
 def section(title):
