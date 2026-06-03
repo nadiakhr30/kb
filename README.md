@@ -1,4 +1,4 @@
-# 🏥 Prediksi Lama Rawat Pasien DBD
+# Prediksi Lama Rawat Pasien DBD
 **Kelompok 7 — KB A**
 
 Aplikasi Streamlit untuk memprediksi lama rawat pasien Demam Berdarah Dengue (DBD) menggunakan **Stacking Regressor**.
@@ -6,31 +6,16 @@ Aplikasi Streamlit untuk memprediksi lama rawat pasien Demam Berdarah Dengue (DB
 ## Fitur Aplikasi
 | Menu | Deskripsi |
 |------|-----------|
-| 📂 Upload & Preprocessing | Upload dataset, cek missing value, encoding, normalisasi |
-| 📊 EDA | Visualisasi distribusi, heatmap korelasi, chi-square, silhouette |
-| 🤖 Training Model | Latih Stacking Regressor (LR + KNN + SVR + MLP) |
-| 🔮 Prediksi Pasien | Input data pasien baru → estimasi lama dirawat |
-| 📈 Evaluasi Model | MSE, RMSE, MAD, MAPE + visualisasi residual |
+| Upload & Preprocessing | Upload dataset, cek missing value, encoding, normalisasi |
+| EDA | Visualisasi distribusi, heatmap korelasi, chi-square, silhouette |
+| Training Model | Latih Stacking Regressor (LR + KNN + SVR + MLP) |
+| Prediksi Pasien | Input data pasien baru → estimasi lama dirawat |
+| Evaluasi Model | MSE, RMSE, MAD, MAPE + visualisasi residual |
 
 ## Cara Menjalankan Lokal
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
-```
-
-## Deploy ke Streamlit Cloud (via GitHub)
-1. Push repo ini ke GitHub
-2. Buka [share.streamlit.io](https://share.streamlit.io)
-3. Klik **New app** → pilih repo ini
-4. Set **Main file path** ke `app.py`
-5. Klik **Deploy**
-
-## Struktur Repo
-```
-├── app.py               # Aplikasi utama Streamlit
-├── requirements.txt     # Dependencies Python
-├── README.md            # Dokumentasi ini
-└── dengue_fever_los_dataset(1).csv.xls   # (opsional, taruh dataset di sini)
 ```
 
 ## Dataset
