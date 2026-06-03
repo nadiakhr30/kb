@@ -538,17 +538,6 @@ elif nav == "Exploratory Data Analysis":
         fig.tight_layout(pad=2.5)
         fig_to_st(fig)
 
-        section("Distribusi Target — Lama Dirawat")
-        fig2, axes2 = plt.subplots(1, 2, figsize=(13, 4.5))
-        sns.boxplot(x=df[target], color=SUCCESS, ax=axes2[0],
-                    linecolor="#065f46", linewidth=1.2, flierprops=dict(marker="o", color=SUCCESS, alpha=0.4))
-        axes2[0].set_title("Boxplot Lama Dirawat")
-        sns.violinplot(x=df[target], color=SUCCESS, ax=axes2[1],
-                       linecolor="#065f46", linewidth=1.2, inner="quartile")
-        axes2[1].set_title("Violin Plot Lama Dirawat")
-        fig2.tight_layout(pad=2.5)
-        fig_to_st(fig2)
-
         section("Rata-rata Lama Dirawat per Jenis Demam")
         fig3, ax3 = plt.subplots(figsize=(8, 4.5))
         pal = {k: c for k, c in zip(df["jenis_demam"].unique(), palette)}
@@ -738,48 +727,17 @@ elif nav == "Evaluasi Model":
             ("MAPE", f"{mape:.4f}", "Mean Abs. Percentage Error"),
         ])
 
-        col_l, col_r = st.columns(2, gap="large")
-
-        with col_l:
-            section("Actual vs Prediction")
-            fig1, ax1 = plt.subplots(figsize=(7, 4.5))
-            ax1.plot(yte.values, color=ACCENT,  linewidth=1.8, label="Actual",     alpha=0.9)
-            ax1.plot(yprd,       color=ACCENT2, linewidth=1.8, label="Prediction", alpha=0.9)
-            ax1.fill_between(range(len(yte)), yte.values, yprd, alpha=0.07, color=ACCENT)
-            ax1.set_title("Actual vs Prediction")
-            ax1.set_xlabel("Data Index"); ax1.set_ylabel("Nilai")
-            ax1.legend(framealpha=0.9)
-            ax1.grid(True, alpha=0.5)
-            fig1.tight_layout()
-            fig_to_st(fig1)
-
-        with col_r:
-            section("Scatter — Actual vs Predicted")
-            fig2, ax2 = plt.subplots(figsize=(7, 4.5))
-            ax2.scatter(yte, yprd, alpha=0.55, color=ACCENT, s=35, edgecolors="none")
-            mn = min(float(yte.min()), float(yprd.min()))
-            mx = max(float(yte.max()), float(yprd.max()))
-            ax2.plot([mn, mx], [mn, mx], color=DANGER, linestyle="--",
-                     linewidth=1.4, label="Perfect Fit")
-            ax2.set_title("Actual vs Predicted (Scatter)")
-            ax2.set_xlabel("Actual"); ax2.set_ylabel("Predicted")
-            ax2.legend(framealpha=0.9)
-            ax2.grid(True, alpha=0.5)
-            fig2.tight_layout()
-            fig_to_st(fig2)
-
-        section("Distribusi Residual")
-        residuals = yte.values - yprd
-        fig3, ax3 = plt.subplots(figsize=(14, 4))
-        sns.histplot(residuals, kde=True, color=PURPLE, bins=30, ax=ax3,
-                     edgecolor="none", alpha=0.7)
-        ax3.axvline(x=0, color=DANGER, linestyle="--", linewidth=1.4, label="Error = 0")
-        ax3.set_title("Distribusi Residual (Actual − Predicted)")
-        ax3.set_xlabel("Residual"); ax3.set_ylabel("Frekuensi")
-        ax3.legend(framealpha=0.9)
-        ax3.grid(True, alpha=0.4, axis="y")
-        fig3.tight_layout()
-        fig_to_st(fig3)
+        section("Actual vs Prediction")
+        fig1, ax1 = plt.subplots(figsize=(7, 4.5))
+        ax1.plot(yte.values, color=ACCENT,  linewidth=1.8, label="Actual",     alpha=0.9)
+        ax1.plot(yprd,       color=ACCENT2, linewidth=1.8, label="Prediction", alpha=0.9)
+        ax1.fill_between(range(len(yte)), yte.values, yprd, alpha=0.07, color=ACCENT)
+        ax1.set_title("Actual vs Prediction")
+        ax1.set_xlabel("Data Index"); ax1.set_ylabel("Nilai")
+        ax1.legend(framealpha=0.9)
+        ax1.grid(True, alpha=0.5)
+        fig1.tight_layout()
+        fig_to_st(fig1)
 
         section("Bar Chart Metrik Evaluasi")
         fig4, ax4 = plt.subplots(figsize=(8, 4))
