@@ -198,18 +198,7 @@ elif nav == "📊 EDA":
         plt.tight_layout()
         st.pyplot(fig)
         plt.close()
-
-        # --- Distribusi lama dirawat
-        st.subheader("Distribusi Lama Dirawat (Target)")
-        fig2, axes2 = plt.subplots(1, 2, figsize=(12, 4))
-        sns.boxplot(x=df["lama_dirawat"], color="lightgreen", ax=axes2[0])
-        axes2[0].set_title("Boxplot Lama Dirawat")
-        sns.violinplot(x=df["lama_dirawat"], color="lightgreen", ax=axes2[1])
-        axes2[1].set_title("Violin Plot Lama Dirawat")
-        plt.tight_layout()
-        st.pyplot(fig2)
-        plt.close()
-
+        
         # --- Rata-rata lama dirawat per jenis demam
         st.subheader("Rata-rata Lama Dirawat per Jenis Demam")
         fig3, ax3 = plt.subplots(figsize=(8, 4))
@@ -421,30 +410,3 @@ elif nav == "📈 Evaluasi Model":
             ax_ap.legend()
             st.pyplot(fig_ap)
             plt.close()
-
-        # --- Residual histogram
-        st.subheader("Distribusi Residual (Error Prediksi)")
-        residuals = y_test.values - y_pred
-        fig_res, ax_res = plt.subplots(figsize=(10, 4))
-        sns.histplot(residuals, kde=True, color="purple", bins=30, ax=ax_res)
-        ax_res.axvline(x=0, color="red", linestyle="--", label="Error = 0")
-        ax_res.set_title("Distribusi Residual")
-        ax_res.set_xlabel("Residual (Actual - Predicted)")
-        ax_res.set_ylabel("Frekuensi")
-        ax_res.legend()
-        ax_res.grid(True, alpha=0.3)
-        st.pyplot(fig_res)
-        plt.close()
-
-        # --- Scatter actual vs predicted
-        st.subheader("Scatter Plot: Actual vs Predicted")
-        fig_sc, ax_sc = plt.subplots(figsize=(6, 5))
-        ax_sc.scatter(y_test, y_pred, alpha=0.5, color="steelblue")
-        mn, mx = min(y_test.min(), y_pred.min()), max(y_test.max(), y_pred.max())
-        ax_sc.plot([mn, mx], [mn, mx], "r--", label="Perfect Fit")
-        ax_sc.set_xlabel("Actual")
-        ax_sc.set_ylabel("Predicted")
-        ax_sc.set_title("Actual vs Predicted (Scatter)")
-        ax_sc.legend()
-        st.pyplot(fig_sc)
-        plt.close()
